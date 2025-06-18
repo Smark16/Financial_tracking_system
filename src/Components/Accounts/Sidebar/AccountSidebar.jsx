@@ -100,7 +100,7 @@ function Sidebar() {
     {
       title: "Settings",
       icon: <SettingsIcon />,
-      href: "/admin/settings",
+      href: "/accounts/settings",
     },
   ]
 

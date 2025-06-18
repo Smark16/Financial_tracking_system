@@ -6,6 +6,7 @@ import Fees from '../Accounts/FeesManager/Fees'
 import Expense from '../Accounts/ExpenseManagement/Expense'
 import './routes.css'
 import AccountReports from '../Accounts/AccountReports/AccountReports'
+import Settings from '../Accounts/AccountSettings/Settings'
 
 function AppRoutes(){
     return (
@@ -23,6 +24,7 @@ function AppRoutes(){
              <Route path='fees' element={<Fees/>}/>
              <Route path='expense' element={<Expense/>}/>
              <Route path='account_reports' element={<AccountReports/>}/>
+             <Route path='settings' element={<Settings/>}/>
             </Routes>
          </div>
         </div>
