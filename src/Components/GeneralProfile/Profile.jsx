@@ -24,6 +24,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Person, Edit, Email, CalendarToday, Close, AccountCircle } from "@mui/icons-material";
+import CustomButton from "../CustomButon/Button";
 
 export default function Profile() {
   const theme = useTheme();
@@ -63,7 +64,8 @@ export default function Profile() {
         sx={{
           p: 3,
           mb: 3,
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "linear-gradient(128deg, #030101 43%, #f2295b 100%)",
+          opacity:0.86,
           color: "white",
           borderRadius: 2,
         }}
@@ -88,7 +90,7 @@ export default function Profile() {
               sx={{
                 width: 120,
                 height: 120,
-                bgcolor: theme.palette.primary.main,
+                bgcolor:" #f2295b",
                 fontSize: "3rem",
                 boxShadow: theme.shadows[8],
               }}
@@ -114,20 +116,8 @@ export default function Profile() {
               </Stack>
             </Box>
 
-            <Button
-              variant="contained"
-              startIcon={<Edit />}
-              onClick={() => setModal(true)}
-              sx={{
-                borderRadius: 2,
-                textTransform: "none",
-                px: 3,
-                py: 1.5,
-                boxShadow: theme.shadows[4],
-              }}
-            >
-              Edit Profile
-            </Button>
+            <CustomButton text="Edit Profile" icon={<Edit/>} onClick={() => setModal(true)}/>
+
           </Stack>
         </Box>
 
@@ -215,7 +205,7 @@ export default function Profile() {
             <Stack direction="row" spacing={2} alignItems="center">
               <Avatar
                 sx={{
-                  bgcolor: "primary.main",
+                  bgcolor:" #f2295b",
                   width: 56,
                   height: 56,
                 }}
@@ -302,12 +292,11 @@ export default function Profile() {
         </DialogContent>
 
         <DialogActions sx={{ p: 3, pt: 2 }}>
-          <Button onClick={handleCancel} variant="outlined" sx={{ borderRadius: 2, textTransform: "none", px: 3 }}>
+          <Button onClick={handleCancel} variant="contained"  sx={{ borderRadius: 2, textTransform: "none", px: 3, py: 1.5, bgcolor: '#FFC000'}}>
             Cancel
           </Button>
-          <Button onClick={handleSave} variant="contained" sx={{ borderRadius: 2, textTransform: "none", px: 3 }}>
-            Save Changes
-          </Button>
+         
+          <CustomButton onClick={handleSave} text="Save Changes"/>
         </DialogActions>
       </Dialog>
     </Container>

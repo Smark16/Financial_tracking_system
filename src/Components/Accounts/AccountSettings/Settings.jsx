@@ -219,7 +219,8 @@ export default function Settings() {
         sx={{
           p: 3,
           mb: 4,
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "linear-gradient(128deg, #030101 43%, #f2295b 100%)",
+          opacity:0.86,
           color: "white",
           borderRadius: 3,
         }}

@@ -1,14 +1,25 @@
 import {Routes, Route} from 'react-router-dom'
-import Sidebar from '../Accounts/Sidebar/AccountSidebar'
-import Profile from '../GeneralProfile/Profile'
-import Dashboard from '../Accounts/AccountsDashboard/Dashboard'
-import Fees from '../Accounts/FeesManager/Fees'
-import Expense from '../Accounts/ExpenseManagement/Expense'
+import {lazy, Suspense} from 'react'
+import { CircularProgress } from '@mui/material'
+
 import './routes.css'
-import AccountReports from '../Accounts/AccountReports/AccountReports'
-import Settings from '../Accounts/AccountSettings/Settings'
+
+// Acount Routes
+import Sidebar from '../Accounts/Sidebar/AccountSidebar'
+const Profile  = lazy(()=> import('../GeneralProfile/Profile'))
+const Dashboard = lazy(()=> import('../Accounts/AccountsDashboard/Dashboard'))
+const Fees =  lazy(()=>import('../Accounts/FeesManager/Fees'))
+const TutionList = lazy(()=>import('../Accounts/TutionClearanceList/TutionClearance'))
+const AccountReports = lazy(()=>import('../Accounts/AccountReports/AccountReports'))
+const Settings = lazy(()=>import('../Accounts/AccountSettings/Settings'))
 
 function AppRoutes(){
+
+   const LoadingSpinner = () => (
+      <div className="center-content">
+        <CircularProgress />
+      </div>
+    );
     return (
        <>
        <Routes>
@@ -19,12 +30,12 @@ function AppRoutes(){
             <Sidebar/>
          <div className="accounts_pages">
             <Routes>
-             <Route path='account_profile' element={<Profile/>}/>
-             <Route path='account_dashboard' element={<Dashboard/>}/>
-             <Route path='fees' element={<Fees/>}/>
-             <Route path='expense' element={<Expense/>}/>
-             <Route path='account_reports' element={<AccountReports/>}/>
-             <Route path='settings' element={<Settings/>}/>
+             <Route path='account_profile' element={<Suspense fallback={<LoadingSpinner />}><Profile/></Suspense>}/>
+             <Route path='account_dashboard' element={<Suspense fallback={<LoadingSpinner />}><Dashboard/></Suspense>}/>
+             <Route path='fees' element={<Suspense fallback={<LoadingSpinner />}><Fees/></Suspense>}/>
+             <Route path='tution_list' element={<Suspense fallback={<LoadingSpinner />}><TutionList/></Suspense>}/>
+             <Route path='account_reports' element={<Suspense fallback={<LoadingSpinner />}><AccountReports/></Suspense>}/>
+             <Route path='settings' element={<Suspense fallback={<LoadingSpinner />}><Settings/></Suspense>}/>
             </Routes>
          </div>
         </div>

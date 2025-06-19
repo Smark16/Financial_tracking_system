@@ -52,6 +52,7 @@ import {
   Schedule,
   Warning,
 } from "@mui/icons-material"
+import CustomButton from "../../CustomButon/Button"
 
 // Sample data
 const transactionData = [
@@ -253,7 +254,7 @@ export default function Fees() {
     <Container maxWidth="xl" sx={{ py: 4 }}>
       {/* Header */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h1" fontWeight="bold" color="primary.dark" sx={{ mb: 1 }}>
+        <Typography variant="h4" component="h1" fontWeight="bold" sx={{ mb: 1, color: "linear-gradient(128deg, #030101 43%, #f2295b 100%)" }}>
           Tuition Management
         </Typography>
         <Typography variant="body1" color="text.secondary">
@@ -295,9 +296,11 @@ export default function Fees() {
                     key={filter}
                     label={filter}
                     onClick={() => setSelectedDateFilter(filter === selectedDateFilter ? "" : filter)}
-                    color={selectedDateFilter === filter ? "primary" : "default"}
+                    sx = {{
+                      bgcolor: selectedDateFilter === filter ? "#f2295b" : "default"
+                    }}
                     variant={selectedDateFilter === filter ? "filled" : "outlined"}
-                    sx={{ mb: 1 }}
+                    
                   />
                 ))}
               </Stack>
@@ -354,7 +357,7 @@ export default function Fees() {
                     <TableCell>{transaction.id}</TableCell>
                     <TableCell>
                       <Stack direction="row" spacing={2} alignItems="center">
-                        <Avatar sx={{ width: 32, height: 32, bgcolor: "primary.main" }}>
+                        <Avatar sx={{ width: 32, height: 32, bgcolor: "#f2295b" }}>
                           {transaction.name.charAt(0)}
                         </Avatar>
                         <Box>
@@ -422,15 +425,9 @@ export default function Fees() {
                               <MenuItem value="Approve">Approve</MenuItem>
                             </Select>
                           </FormControl>
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            startIcon={<Visibility />}
-                            onClick={() => handleViewDetails(transaction)}
-                            sx={{ textTransform: "none", minWidth: 80 }}
-                          >
-                            View
-                          </Button>
+                         
+                          <CustomButton text="View" icon={<Visibility/>} onClick={() => handleViewDetails(transaction)}/>
+
                         </Stack>
                         <Stack direction="row" spacing={1}>
                           <FormControl size="small" sx={{ minWidth: 90 }}>
@@ -497,7 +494,7 @@ export default function Fees() {
               {/* Student Information */}
               <Paper elevation={1} sx={{ p: 3, mb: 3, borderRadius: 2, bgcolor: "primary.50" }}>
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
-                  <Avatar sx={{ width: 64, height: 64, bgcolor: "primary.main" }}>
+                  <Avatar sx={{ width: 64, height: 64, bgcolor: "#f2295b" }}>
                     <Person sx={{ fontSize: "2rem" }} />
                   </Avatar>
                   <Box>
@@ -505,8 +502,9 @@ export default function Fees() {
                       {selectedStudent.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" fontFamily="monospace">
-                      ID: {selectedStudent.studentId}
+                      StudentID: {selectedStudent.studentId}
                     </Typography>
+                    
                     <Chip label={selectedStudent.enrollmentStatus} color="success" size="small" sx={{ mt: 1 }} />
                   </Box>
                 </Stack>
@@ -522,9 +520,9 @@ export default function Fees() {
                 Payment History
               </Typography>
 
-              <Tabs value={tabValue} onChange={(e, newValue) => setTabValue(newValue)} sx={{ mb: 2 }}>
+              <Tabs value={tabValue} onChange={(e, newValue) => setTabValue(newValue)} sx={{ mb: 2, color:"#f2295b" }}>
                 {selectedStudent.academicYears.map((yearData) => (
-                  <Tab key={yearData.year} label={yearData.year} />
+                  <Tab key={yearData.year} label={yearData.year} sx={{color:"#f2295b"}}/>
                 ))}
               </Tabs>
 
@@ -534,7 +532,7 @@ export default function Fees() {
                     {yearData.semesters.map((semester, semesterIndex) => (
                       <ListItem key={semesterIndex} sx={{ px: 0 }}>
                         <ListItemIcon>
-                          <CalendarToday color="primary" />
+                          <CalendarToday sx={{color:"#f2295b"}} />
                         </ListItemIcon>
                         <ListItemText
                           primary={
@@ -567,14 +565,15 @@ export default function Fees() {
         <DialogActions sx={{ p: 3, pt: 2 }}>
           <Button
             onClick={() => setDetailModal(false)}
-            variant="outlined"
-            sx={{ borderRadius: 2, textTransform: "none" }}
+            variant="conatained"
+            sx={{ borderRadius: 2, textTransform: "none", px: 3, py: 1.5, bgcolor:"#FFC000"}}
           >
             Close
           </Button>
-          <Button variant="contained" sx={{ borderRadius: 2, textTransform: "none" }}>
+          {/* <Button variant="contained" sx={{ borderRadius: 2, textTransform: "none" }}>
             Generate Report
-          </Button>
+          </Button> */}
+          <CustomButton text="Generate Report"/>
         </DialogActions>
       </Dialog>
     </Container>

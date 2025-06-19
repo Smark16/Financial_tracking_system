@@ -201,7 +201,7 @@ export default function Dashboard() {
     <Container maxWidth="xl" sx={{ py: 4 }}>
       {/* Header */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h1" fontWeight="bold" color="primary.dark" sx={{ mb: 1 }}>
+        <Typography variant="h4" component="h1" fontWeight="bold" sx={{ mb: 1,  color: "linear-gradient(128deg, #030101 43%, #f2295b 100%)"}}>
           Dashboard Overview
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ display: "flex", alignItems: "center", gap: 1 }}>

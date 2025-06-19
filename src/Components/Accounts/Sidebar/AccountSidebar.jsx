@@ -88,9 +88,9 @@ function Sidebar() {
       href: "/accounts/fees",
     },
     {
-      title: "Expense Management",
+      title: "Tution Clearance List",
       icon: <Receipt/>,
-      href: "/accounts/expense",
+      href: "/accounts/tution_list",
     },
     {
       title: "Reports",
