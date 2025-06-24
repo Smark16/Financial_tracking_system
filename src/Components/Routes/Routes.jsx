@@ -1,8 +1,9 @@
 import {Routes, Route} from 'react-router-dom'
-import {lazy, Suspense} from 'react'
+import {lazy, Suspense, useEffect, useState} from 'react'
 import { CircularProgress } from '@mui/material'
 
 import './routes.css'
+import LoadingScreen from '../LoadingScreen/LoadingScreen'
 
 // Acount Routes
 import Sidebar from '../Accounts/Sidebar/AccountSidebar'
@@ -14,12 +15,26 @@ const AccountReports = lazy(()=>import('../Accounts/AccountReports/AccountReport
 const Settings = lazy(()=>import('../Accounts/AccountSettings/Settings'))
 
 function AppRoutes(){
+   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const initApp = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 500)); 
+      setIsLoading(false);
+    };
+    initApp();
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
    const LoadingSpinner = () => (
       <div className="center-content">
         <CircularProgress />
       </div>
     );
+    
     return (
        <>
        <Routes>
