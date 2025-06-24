@@ -31,10 +31,10 @@ function AppRoutes(){
 
    const LoadingSpinner = () => (
       <div className="center-content">
-        <CircularProgress />
+        <CircularProgress size={40} sx={{color:'#600018'}}/>
       </div>
     );
-    
+
     return (
        <>
        <Routes>
